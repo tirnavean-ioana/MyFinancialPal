@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">My Financial Pal</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="home">Acasa</string>
+    <string name="income">Venit</string>
+    <string name="cost">Cheltuieli</string>
+    <string name="statistics">Statistici</string>
+    <string name="settings">Setari</string>
+    <string name="help">Ajutor</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main_navigation">MainActivityNavigation</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+</resources>

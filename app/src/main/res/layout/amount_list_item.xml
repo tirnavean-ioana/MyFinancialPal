@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="15dp"
+        android:columnCount="4"
+        android:rowCount="2">
+
+        <TextView
+            android:id="@+id/list_description_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_columnSpan="3"
+            android:layout_columnWeight="3"
+            android:text="No amoount registered"
+            android:textSize="@dimen/list_item_text_size" />
+
+        <TextView
+            android:id="@+id/list_amount_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:text=""
+            android:textSize="@dimen/list_item_text_size" />
+
+        <TextView
+            android:id="@+id/list_date_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/list_item_date_size" />
+
+    </GridLayout>
+
+</LinearLayout>
