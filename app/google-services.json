@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "423961940799",
+    "firebase_url": "https://myfinancialpal-a62d7.firebaseio.com",
+    "project_id": "myfinancialpal-a62d7",
+    "storage_bucket": "myfinancialpal-a62d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423961940799:android:b15cfeb58dfe8a03",
+        "android_client_info": {
+          "package_name": "com.example.myfinancialpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423961940799-8bf2nujs1g82d5881g5ots4ibp0ug0t2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myfinancialpal",
+            "certificate_hash": "a92ba2a0654535bbc7b3c089d623199626cb5b65"
+          }
+        },
+        {
+          "client_id": "423961940799-pdf0s94fe2dd4r51j7h5ocn82d0aions.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB16A_fo8MXpe4_2R9OSuayoLFKmyeJX9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423961940799-pdf0s94fe2dd4r51j7h5ocn82d0aions.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
