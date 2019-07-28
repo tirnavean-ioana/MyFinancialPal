@@ -1,5 +1,6 @@
 package com.example.myfinancialpal.FirebaseConnection;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class FirebaseInstance { // Singleton design pattern
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
     }
+
+
 
     public static FirebaseInstance getDatabaseInstance() {
         if(myFirebaseInstance == null){
@@ -59,6 +62,12 @@ public class FirebaseInstance { // Singleton design pattern
         if (databaseReference != null){
 
             //TODO verific existenta userului in baza de date
+
+             String user = String.valueOf(databaseReference.child("userData").child("username").equalTo(username));
+             String pass = String.valueOf(databaseReference.child("userData").equalTo("password", password));
+
+            Log.i("FI.java userDataExist()", user + " " + pass);
+
             return true;
 
         }

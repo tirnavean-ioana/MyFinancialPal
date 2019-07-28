@@ -2,7 +2,10 @@ package com.example.myfinancialpal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.button_register);
 
 
+        //verifica conexiunea la internet
+        checkConnection();
+
     //database
         myDatabase = FirebaseInstance.getDatabaseInstance();
 
@@ -57,12 +63,25 @@ public class MainActivity extends AppCompatActivity {
                 //Verifica daca au fost introduse date in ambele campuri: username si password
                 if(!editText_isEmpty()){
 
+                    user = new User(username.getText().toString(), password.getText().toString());
+
                     // TODO verifica in baza de date existenta datelor introduse
 
-                    //redirectionare catre MsinActivityNavigation
-                    Intent intent = new Intent(MainActivity.this, MainActivityNavigation.class);
+                    if(myDatabase.userDataExist(user.getUsername(), user.getPassword())){
 
-                    startActivity(intent);
+
+                        Log.i("MainActivity check user", user.getUsername() + " " + user.getPassword() + " exista in BD");
+
+                        //redirectionare catre MsinActivityNavigation
+                        Intent intent = new Intent(MainActivity.this, MainActivityNavigation.class);
+
+                        startActivity(intent);
+                    }
+                    else {
+                        username.setText("error");
+                        password.setText("error");
+                       // Toast.makeText(MainActivity.this, "Userul nu exista in BD", Toast.LENGTH_LONG).show();
+                    }
                 }
                // else Toast.makeText(this, "Completati ambele campuri", Toast.LENGTH_SHORT).show();
             }
@@ -77,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 //daca EditText-urile nu sunt goale
                 if(!editText_isEmpty()) {
 
-                    user = new User(String.valueOf(username.getText()), password.getText().toString());
+                    user = new User(username.getText().toString(), password.getText().toString());
 
                     Log.i("user data: ", user.getUsername() + " " + user.getPassword());
 
@@ -97,7 +116,28 @@ public class MainActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(username.getText()) && !TextUtils.isEmpty(password.getText())) {
             return false;  //returneaza fals
 
-        } else return false; //daca EditText-urile sunt goale, returneaza true
+        } else return true; //daca EditText-urile sunt goale, returneaza true
     }
 
+    //verifica daca telefonul e conectat la internet
+    private boolean isOnline(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void checkConnection(){
+        if (isOnline()){
+            Toast.makeText(this, "Esti conectat la internet", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Nicio conexiune la internet", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

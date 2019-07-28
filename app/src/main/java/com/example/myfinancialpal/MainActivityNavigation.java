@@ -61,8 +61,6 @@ public class MainActivityNavigation extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
     }
 
     @Override
@@ -95,7 +93,6 @@ public class MainActivityNavigation extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "celalalt meniu ai", Toast.LENGTH_SHORT).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
