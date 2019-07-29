@@ -13,4 +13,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_text_size">16sp</dimen>
     <dimen name="list_item_date_size">13sp</dimen>
+    <dimen name="right_padding">50dp</dimen>
 </resources>

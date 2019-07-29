@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,12 +39,13 @@ import java.util.List;
 public class MainActivityNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
+    FrameLayout page_holder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        page_holder = findViewById(R.id.page_holder);
 
         setContentView(R.layout.activity_main_navigation);
 
@@ -113,8 +115,8 @@ public class MainActivityNavigation extends AppCompatActivity
         } else if (id == R.id.nav_income) {
 
             //TODO bind fragment to activity when menuItem is selected
-            fragment = new AmountList();
 
+            fragment = new AmountList();
 
             Toast.makeText(this, "income menu item", Toast.LENGTH_SHORT).show();
 
@@ -146,7 +148,5 @@ public class MainActivityNavigation extends AppCompatActivity
 
         return true;
     }
-
-
 
 }

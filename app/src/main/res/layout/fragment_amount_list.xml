@@ -15,11 +15,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/amount_list_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:scrollbars="vertical">
 
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/addAmountButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/add_amount"/>
 
 </RelativeLayout>

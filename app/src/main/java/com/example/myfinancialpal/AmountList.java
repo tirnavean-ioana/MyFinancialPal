@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myfinancialpal.Model.Income;
@@ -33,6 +36,10 @@ public class AmountList extends Fragment {
     private RecyclerView recyclerView;
     private ListAdapter mAdapter = null;
 
+    View rootView;
+
+    Button addAmountButton;
+
     public AmountList() {
         // Required empty public constructor
     }
@@ -42,13 +49,28 @@ public class AmountList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_amount_list, container,false);
+
+        rootView = inflater.inflate(R.layout.fragment_amount_list, container,false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.amount_list_recycler_view);
 
+        addAmountButton = rootView.findViewById(R.id.addAmountButton);
+
         setListAdapter();
 
-        return inflater.inflate(R.layout.fragment_amount_list, container, false);
+        addAmountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment addNewAmountFragment = new AddAmountFragment();
+
+               getActivity().getSupportFragmentManager().beginTransaction()
+                       .replace(R.id.page_holder, addNewAmountFragment, "addNewAmountFragment")
+                       .addToBackStack(null)
+                       .commit();
+            }
+        });
+
+        return rootView;
     }
 
 
