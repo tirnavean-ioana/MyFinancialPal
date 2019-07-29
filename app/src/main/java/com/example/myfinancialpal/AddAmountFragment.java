@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -50,21 +51,12 @@ public class AddAmountFragment extends Fragment {
         add_value = rootView.findViewById(R.id.add_button);
         cancel = rootView.findViewById(R.id.cancel_button);
 
-        add_value.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO adauga inregistrarea in baza de date
+        setSpinnerItems();
 
-            }
-        });
+        btn_add();
+        btn_cancel();
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO actiune pentru cancel
 
-            }
-        });
 
         return rootView;
     }
@@ -106,5 +98,32 @@ public class AddAmountFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void setSpinnerItems(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.income_options, android.R.layout.simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void btn_add(){
+        add_value.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO adauga inregistrarea in baza de date
+
+            }
+        });
+    }
+
+    private void btn_cancel(){
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO actiune pentru cancel
+
+            }
+        });
     }
 }
