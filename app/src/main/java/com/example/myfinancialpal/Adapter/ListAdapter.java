@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myfinancialpal.Model.Income;
 import com.example.myfinancialpal.R;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
@@ -27,11 +25,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         public TextView amount;
 
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
-            description = (TextView) itemView.findViewById(R.id.list_description_holder);
-            date = (TextView) itemView.findViewById(R.id.list_date_holder);
-            amount = (TextView) itemView.findViewById(R.id.list_amount_holder);
+            description =  itemView.findViewById(R.id.list_description_holder);
+            date = itemView.findViewById(R.id.list_date_holder);
+            amount = itemView.findViewById(R.id.list_amount_holder);
         }
     }
 
@@ -47,13 +45,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ListAdapter.MyViewHolder holder, int position) {
         Income income = incomeList.get(position);
+
         holder.description.setText(income.getSource());
         holder.date.setText(income.getDate().toString());
         holder.amount.setText(String.valueOf(income.getAmount()));
     }
+
+
 
     @Override
     public int getItemCount() {
