@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // TODO verific daca userul exista inainte sa il adaug in baza de date
+                // TODO fac clasa speciala care sa se ocupe de verificari si incarcarea/descarcarea datelor
                 //daca EditText-urile nu sunt goale
                 if(!editText_isEmpty()) {
 
