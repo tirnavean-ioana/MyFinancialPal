@@ -21,8 +21,15 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <include layout="@layout/content_main_activity_navigation" />
 
+   <!-- <androidx.viewpager.widget.ViewPager
+        android:id="@+id/page_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </androidx.viewpager.widget.ViewPager>
+    -->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

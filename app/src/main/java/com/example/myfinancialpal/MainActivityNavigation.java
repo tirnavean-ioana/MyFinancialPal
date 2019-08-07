@@ -3,6 +3,7 @@ package com.example.myfinancialpal;
 import android.app.FragmentManager;
 import android.os.Bundle;
 
+import com.example.myfinancialpal.Adapter.FragmentsAdapter;
 import com.example.myfinancialpal.Model.Income;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.widget.FrameLayout;
@@ -39,13 +41,16 @@ import java.util.List;
 public class MainActivityNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    FrameLayout page_holder;
+    FragmentsAdapter fragmentsAdapter;
+    ViewPager viewPager_contentMain;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        page_holder = findViewById(R.id.page_holder);
+     //   viewPager_appBar = (ViewPager) findViewById(R.id.page_container);
+        viewPager_contentMain =  findViewById(R.id.page_holder);
 
         setContentView(R.layout.activity_main_navigation);
 
@@ -61,9 +66,12 @@ public class MainActivityNavigation extends AppCompatActivity
         toggle.syncState();
 
 
+        fragmentsAdapter = new FragmentsAdapter(getSupportFragmentManager());
+
+       // setupViewPager(viewPager_appBar);
+        setupViewPager(viewPager_contentMain);
+
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
     }
 
@@ -81,7 +89,6 @@ public class MainActivityNavigation extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
        getMenuInflater().inflate(R.menu.main_activity_navigation, menu);
-      //  getMenuInflater().inflate(R.menu.activity_main_navigation_drawer, menu);
         return true;
     }
 
@@ -107,40 +114,37 @@ public class MainActivityNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = null;
-
         if (id == R.id.nav_home) {
+            setViewPager(0);
             Toast.makeText(getApplicationContext(), "Home page", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_income) {
 
             //TODO bind fragment to activity when menuItem is selected
-
-            fragment = new AmountList();
-
+            setViewPager(1);
+            //viewPager.setCurrentItem(1);
             Toast.makeText(this, "income menu item", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_cost) {
+            setViewPager(2);
+            //viewPager.setCurrentItem(2);
             Toast.makeText(this, "cost menu item", Toast.LENGTH_SHORT).show();
 
-
         } else if (id == R.id.nav_statistics) {
+            //TODO create fragment then setup in viewPager
+           // viewPager.setCurrentItem(4);
             Toast.makeText(this, "statistics menu item", Toast.LENGTH_SHORT).show();
 
-
         } else if (id == R.id.nav_settings) {
+            //TODO create fragment then setup in viewPager
+          //  viewPager.setCurrentItem(5);
             Toast.makeText(this, "settings menu item", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_help) {
+            //TODO create fragment then setup in viewPager
+          //  viewPager.setCurrentItem(6);
             Toast.makeText(this, "help menu item", Toast.LENGTH_SHORT).show();
 
-        }
-
-
-        if(fragment != null){
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.page_holder, fragment);
-            fragmentTransaction.commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -149,4 +153,26 @@ public class MainActivityNavigation extends AppCompatActivity
         return true;
     }
 
+    private void setupViewPager(ViewPager viewPager){
+        FragmentsAdapter adapter = new FragmentsAdapter(getSupportFragmentManager());
+
+        adapter.addFragment(new HomeFragment(), "Acasa");
+        adapter.addFragment(new AmountList(), "Venituri");
+        adapter.addFragment(new AmountList(), "Cheltuieli");
+        adapter.addFragment(new AddAmountFragment(), "Suma noua");
+
+        //TODO creaza fragmentele
+     /*
+        adapter.addFragment(new StatisticsFragment(), "Statistici");
+        adapter.addFragment(new SettingsFragment(), "Setari");
+        adapter.addFragment(new HelpFragment(), "Ajutor");
+      */
+
+        viewPager.setAdapter(adapter);
+    }
+
+    public void setViewPager(int fragmentNumber) {
+    //    viewPager_appBar.setCurrentItem(fragmentNumber);
+        viewPager_contentMain.setCurrentItem(fragmentNumber);
+    }
 }

@@ -6,7 +6,7 @@
     tools:context=".AddAmountFragment"
     android:id="@+id/fragment_add_amount">
 
-
+<!-- TODO sa fac pagina sa arate bine; sa folosesc ConstraintLayout-->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

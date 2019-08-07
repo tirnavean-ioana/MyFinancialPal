@@ -4,12 +4,17 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.myfinancialpal.MainActivity;
 import com.example.myfinancialpal.Model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class FirebaseInstance { // Singleton design pattern
+public class FirebaseInstance extends AsyncTask<Void, Void, Void>{ // Singleton design pattern
 
 
     private static FirebaseInstance myFirebaseInstance = null;
@@ -26,6 +31,10 @@ public class FirebaseInstance { // Singleton design pattern
         databaseReference = database.getReference();
     }
 
+    @Override
+    protected Void doInBackground(Void... voids) {
+        return null;
+    }
 
 
     public static FirebaseInstance getDatabaseInstance() {
@@ -59,6 +68,19 @@ public class FirebaseInstance { // Singleton design pattern
 
     public boolean userDataExist(String username, String password){
 
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              //TODO: Post post = dataSnapshot.getValue(Post.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        /*
         if (databaseReference != null){
 
             //TODO verific existenta userului in baza de date
@@ -75,6 +97,8 @@ public class FirebaseInstance { // Singleton design pattern
             Log.w("Null Firebase reference", "In class FirebaseInstance.java DatabaseReference object is null");
         }
         return false;
+        */
+        return true;
     }
 
     public static String getPushId(){

@@ -9,29 +9,11 @@
     tools:showIn="@layout/app_bar_main_activity_navigation"
     android:id="@+id/content_main_activity_navigation">
 
-
     <FrameLayout
-
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/page_holder" >
+        android:id="@+id/page_holder"></FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main page"
-            android:layout_gravity="center_horizontal"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="adaug grafic statistica"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"/>
-
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

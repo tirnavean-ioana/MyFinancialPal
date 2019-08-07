@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myfinancialpal.Model.Income;
@@ -34,11 +35,13 @@ public class AmountList extends Fragment {
 
     private List<Income> incomeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private ListAdapter mAdapter = null;
+    private ListAdapter adapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     View rootView;
 
     Button addAmountButton;
+
 
     public AmountList() {
         // Required empty public constructor
@@ -52,21 +55,31 @@ public class AmountList extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_amount_list, container,false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.amount_list_recycler_view);
+       recyclerView = (RecyclerView) rootView.findViewById(R.id.amount_list_recycler_view);
 
         addAmountButton = rootView.findViewById(R.id.addAmountButton);
 
-        setListAdapter();
+
+        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_amount_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ListAdapter(incomeList, this);
+
+        recyclerView.setAdapter(adapter);
+
+
 
         addAmountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment addNewAmountFragment = new AddAmountFragment();
+             /* Fragment addNewAmountFragment = new AddAmountFragment();
 
                getActivity().getSupportFragmentManager().beginTransaction()
                        .replace(R.id.page_holder, addNewAmountFragment, "addNewAmountFragment")
                        .addToBackStack(null)
                        .commit();
+                       */
+                ((MainActivityNavigation)getActivity()).setViewPager(3);
+
             }
         });
 
@@ -83,11 +96,12 @@ public class AmountList extends Fragment {
 
         prepareListData();
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
-
+        mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        //mAdapter = new ListAdapter();
         recyclerView.setAdapter(mAdapter);
     }
 
