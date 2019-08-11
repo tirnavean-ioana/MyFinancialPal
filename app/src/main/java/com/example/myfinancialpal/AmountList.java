@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.myfinancialpal.Adapter.ListAdapter;
 import com.example.myfinancialpal.Model.Income;
 
 import java.util.ArrayList;
@@ -55,17 +56,16 @@ public class AmountList extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_amount_list, container,false);
 
-       recyclerView = (RecyclerView) rootView.findViewById(R.id.amount_list_recycler_view);
+      recyclerView = (RecyclerView) rootView.findViewById(R.id.amount_list_recycler_view);
 
         addAmountButton = rootView.findViewById(R.id.addAmountButton);
 
 
-        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_amount_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ListAdapter(incomeList, this);
 
-        recyclerView.setAdapter(adapter);
+       // recyclerView.setAdapter(adapter);
 
+        setListAdapter();
 
 
         addAmountButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,6 @@ public class AmountList extends Fragment {
                        .commit();
                        */
                 ((MainActivityNavigation)getActivity()).setViewPager(3);
-
             }
         });
 
@@ -95,18 +94,19 @@ public class AmountList extends Fragment {
     private void setListAdapter() {
 
         prepareListData();
+        adapter = new ListAdapter(getActivity(), incomeList);
+
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(adapter);
 
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //mAdapter = new ListAdapter();
-        recyclerView.setAdapter(mAdapter);
     }
 
     private void prepareListData() {
-        Income i1 = new Income("mergi?", 100.0, new Date());
+        Date date = new Date();
+        Income i1 = new Income("mergi?", 100.0, date);
         incomeList.add(i1);
 
         Income i2 = new Income("sau", 30.0, new Date());

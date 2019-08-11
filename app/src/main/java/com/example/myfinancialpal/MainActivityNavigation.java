@@ -34,24 +34,21 @@ import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class MainActivityNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentsAdapter fragmentsAdapter;
     ViewPager viewPager_contentMain;
-
+    Fragment fragmentHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
      //   viewPager_appBar = (ViewPager) findViewById(R.id.page_container);
-        viewPager_contentMain =  findViewById(R.id.page_holder);
 
+       // fragmentHolder = findViewById(R.id.fragment_holder);
         setContentView(R.layout.activity_main_navigation);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -64,6 +61,9 @@ public class MainActivityNavigation extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        viewPager_contentMain =  findViewById(R.id.page_holder);
 
 
         fragmentsAdapter = new FragmentsAdapter(getSupportFragmentManager());

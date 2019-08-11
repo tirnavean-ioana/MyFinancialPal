@@ -9,10 +9,13 @@
     tools:showIn="@layout/app_bar_main_activity_navigation"
     android:id="@+id/content_main_activity_navigation">
 
-    <FrameLayout
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/page_holder"></FrameLayout>
+        android:id="@+id/page_holder"/>
+
+
+
 
 
 
